@@ -4,6 +4,8 @@ import { getDynamicBetAndState } from '../engines/progressionEngine';
 import { Sparkles, ArrowRight, Shield, ShieldAlert, Undo2, RefreshCw, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import BaccaratRoadmaps from './BaccaratRoadmaps';
 import { useTranslation } from '../locales/translations';
+import { useAppStore } from '../store/useAppStore';
+import { ChipSelector } from './ChipSelector';
 
 interface OtherGameInputProps {
   gameType: GameType;
@@ -28,6 +30,7 @@ const OtherGameInput: React.FC<OtherGameInputProps> = ({
 }) => {
   const { tEntry } = useTranslation();
   const beadScrollRef = React.useRef<HTMLDivElement>(null);
+  const updateBankroll = useAppStore(state => state.updateBankroll);
 
   const scrollBead = (direction: 'left' | 'right') => {
     if (beadScrollRef.current) {
@@ -211,6 +214,24 @@ const OtherGameInput: React.FC<OtherGameInputProps> = ({
           </p>
         </div>
       )}
+
+      {/* SELECIONADOR DE FICHAS DE APOSTA */}
+      <div className="p-4 bg-black/40 rounded-2xl border border-white/5 space-y-3">
+        <ChipSelector
+          currentValue={config.minChip || config.initialBet || 1.00}
+          onSelectChip={(chipVal) => {
+            updateBankroll({
+              management: {
+                ...config,
+                minChip: chipVal,
+                initialBet: chipVal
+              }
+            });
+          }}
+          title="Ficha Selecionada para Aposta (1,00 a 500,00)"
+          compact
+        />
+      </div>
 
       {/* INPUT PANEL KEYBOARD */}
       <div>

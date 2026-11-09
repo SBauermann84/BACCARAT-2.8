@@ -1,7 +1,8 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { GameType, ManagementMode, ManagementConfig, RiskProfile, Bankroll } from '../types';
-import { Calculator, TrendingUp, ShieldAlert, Target, Info, Sparkles, BookOpen, X, CheckCircle, AlertTriangle, RotateCcw, Plus, Minus } from 'lucide-react';
+import { Calculator, TrendingUp, ShieldAlert, Target, Info, Sparkles, BookOpen, X, CheckCircle, AlertTriangle, RotateCcw, Plus, Minus, Coins } from 'lucide-react';
 import { calculateRecoveryBet, generateFibonacciSequence, generatePadovanSequence, getOptimalChipSize, calculateStopLossForLossSequence } from '../engines/progressionEngine';
+import { ChipSelector } from './ChipSelector';
 
 interface ManagementPanelProps {
   config: ManagementConfig;
@@ -29,7 +30,7 @@ const StopLossInteractiveCalculator: React.FC<StopLossCalculatorProps> = ({
 }) => {
   const isBaccarat = config.gameTarget === GameType.BACCARAT;
   const defaultN = positionCount || (isBaccarat ? 1 : 30);
-  const defaultChip = config.minChip && config.minChip > 0 ? config.minChip : 0.10;
+  const defaultChip = config.minChip && config.minChip > 0 ? config.minChip : 1.00;
 
   const [simBaseChip, setSimBaseChip] = useState<number>(defaultChip);
   const [simPositions, setSimPositions] = useState<number>(defaultN);
@@ -63,7 +64,7 @@ const StopLossInteractiveCalculator: React.FC<StopLossCalculatorProps> = ({
     setTimeout(() => setToastMessage(null), 4000);
   };
 
-  const chipPresets = [0.10, 0.20, 0.50, 1.00, 2.00, 2.50, 5.00, 10.00];
+  const chipPresets = [1.00, 5.00, 10.00, 25.00, 125.00, 500.00];
   const positionPresets = isBaccarat ? [1, 2, 3] : [30, 24, 18, 12, 11, 6, 1];
   const lossPresets = [3, 4, 5, 6, 7, 8, 10, 12];
 
@@ -727,6 +728,20 @@ export const ManagementPanel: React.FC<ManagementPanelProps> = ({ config, bankro
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Column: Management Selection */}
         <div className="space-y-6">
+          {/* Selecionador Oficial de Fichas (1,00; 5,00; 10,00; 25,00; 125,00; 500,00) */}
+          <div className="bg-[#111111] p-6 rounded-3xl border border-[#c6a34f]/30 space-y-4 shadow-[0_0_25px_rgba(198,163,79,0.06)]">
+            <ChipSelector
+              currentValue={config.minChip || config.initialBet || 1.00}
+              onSelectChip={(val) => {
+                onChange({
+                  minChip: val,
+                  initialBet: val
+                });
+              }}
+              title="Selecionador de Fichas de Aposta Base"
+            />
+          </div>
+
           {/* Seleção do Jogo & Coberturas de Proteção */}
           <div className="bg-[#111111] p-6 rounded-3xl border border-white/5 space-y-4">
              <h3 className="text-sm font-bold uppercase tracking-widest text-[#c6a34f] flex items-center gap-2">

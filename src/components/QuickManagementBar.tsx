@@ -2,6 +2,7 @@ import React from 'react';
 import { Shield, TrendingUp, DollarSign, Target, Layers, Sliders, ChevronDown, FlaskConical, RotateCcw, Lock } from 'lucide-react';
 import { Bankroll, ManagementConfig, ManagementMode, GameType } from '../types';
 import { useAppStore } from '../store/useAppStore';
+import { ChipSelector } from './ChipSelector';
 
 interface DecimalCommaInputProps {
   className?: string;
@@ -283,6 +284,21 @@ export const QuickManagementBar: React.FC<QuickManagementBarProps> = ({
 
         </div>
 
+      </div>
+
+      {/* Selecionador de Fichas em Destaque */}
+      <div className="mt-3 pt-3 border-t border-white/10">
+        <ChipSelector
+          currentValue={management.minChip || management.initialBet || 1.00}
+          onSelectChip={(chipVal) => {
+            updateManagement({
+              minChip: chipVal,
+              initialBet: chipVal
+            });
+          }}
+          compact
+          title="Selecionador de Ficha de Aposta Base"
+        />
       </div>
 
     </div>
