@@ -319,7 +319,7 @@ export default function App() {
   const [importOrderAsc, setImportOrderAsc] = React.useState<boolean>(true);
   const [clearBeforeImport, setClearBeforeImport] = React.useState<boolean>(true);
 
-  const [analyticsSubTab, setAnalyticsSubTab] = React.useState<'action' | 'trends' | 'distribution' | 'heatmap' | 'baccarat_mining'>('action');
+  const [analyticsSubTab, setAnalyticsSubTab] = React.useState<'action' | 'trends' | 'distribution' | 'heatmap' | 'baccarat_mining'>('baccarat_mining');
   const [rightSideSubTab, setRightSideSubTab] = React.useState<'history' | 'signals'>('history');
 
   const [selectedBacktestStrategyIdsRoulette, setSelectedBacktestStrategyIdsRoulette] = React.useState<string[]>(() => {
@@ -2469,18 +2469,6 @@ export default function App() {
                   {!isCompactMode && (
                     <div className="flex flex-wrap items-center justify-between gap-2 bg-[#111111] p-1.5 rounded-2xl border border-white/10 shadow-md">
                       <div className="flex items-center gap-1 overflow-x-auto custom-scrollbar py-0.5">
-                        <button
-                          type="button"
-                          onClick={() => setAnalyticsSubTab('action')}
-                          className={`px-3 py-1.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
-                            analyticsSubTab === 'action'
-                              ? 'bg-[#c6a34f] text-black shadow-md'
-                              : 'text-white/60 hover:text-white hover:bg-white/5'
-                          }`}
-                        >
-                          <Target size={13} /> Plano de Ação
-                        </button>
-
                         {filteredHistory.length > 0 && (
                           <>
                             <button
@@ -2542,15 +2530,7 @@ export default function App() {
                     </div>
                   )}
 
-                  {(analyticsSubTab === 'action' || isCompactMode) && (
-                    <ActionPlanPanel 
-                      gameType={currentGameType}
-                      history={filteredHistory}
-                      config={bankroll.management}
-                      compact={isCompactMode}
-                      positionCount={1}
-                    />
-                  )}
+
 
                   {!isCompactMode && filteredHistory.length > 0 && analyticsSubTab === 'trends' && (
                     <div className="animate-in fade-in duration-300">

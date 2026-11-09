@@ -1093,7 +1093,7 @@ export const ManagementPanel: React.FC<ManagementPanelProps> = ({ config, bankro
                 </div>
              </div>
              <p className="text-[9px] text-white/30 italic text-center leading-relaxed">
-               As progressões do Plano de Ação são calculadas em <strong className="text-[#c6a34f]">Unidades (u)</strong>. Ao operar na mesa da roleta, os valores em R$ de cada nível serão automaticamente calculados multiplicando as unidades pelo valor da ficha base selecionada por você.
+               As progressões de gestão são calculadas em <strong className="text-[#c6a34f]">Unidades (u)</strong>. Ao operar na mesa do baccarat, os valores em R$ de cada nível serão automaticamente calculados multiplicando as unidades pelo valor da ficha base selecionada por você.
              </p>
           </div>
 
@@ -1101,14 +1101,7 @@ export const ManagementPanel: React.FC<ManagementPanelProps> = ({ config, bankro
         </div>
       </div>
 
-      {/* Interactive Stop Loss Calculator for N Losses */}
-      <StopLossInteractiveCalculator
-        config={config}
-        bankroll={bankroll}
-        onBankrollChange={onBankrollChange}
-        positionCount={positionCount}
-        currentModeLabel={modes.find(m => m.id === config.mode)?.label || config.mode}
-      />
+      {/* Interactive Stop Loss Calculator for N Losses (Background calculations active) */}
 
       {/* Guide overlay modal */}
       {showGuide && (
