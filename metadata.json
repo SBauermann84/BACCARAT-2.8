@@ -1,0 +1,6 @@
+{
+  "name": "Padrão de Cassino — Baccarat",
+  "description": "Sistema profissional de análise de padrões e gestão de risco com estatísticas em tempo real exclusivamente para Baccarat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

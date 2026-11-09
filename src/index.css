@@ -1,0 +1,329 @@
+@import "tailwindcss";
+
+@theme {
+  --color-[#c6a34f]: #c6a34f;
+}
+
+:root {
+  --font-scale: 1.12;
+}
+
+@layer base {
+  html {
+    font-size: calc(16px * var(--font-scale, 1.12));
+  }
+
+  body {
+    @apply bg-[#050505] text-white antialiased;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+    font-size: 1rem;
+    letter-spacing: 0.035em;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* Global Font & Text Rendering Optimizations across all elements */
+*, *::before, *::after {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  letter-spacing: 0.035em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure small arbitrary classes scale up crisply and never blur */
+.text-\[7px\], .text-\[7\.5px\], .text-\[8px\], .text-\[8\.5px\] {
+  font-size: max(11px, calc(0.68rem * var(--font-scale, 1.12))) !important;
+}
+
+.text-\[9px\], .text-\[9\.5px\] {
+  font-size: max(12px, calc(0.74rem * var(--font-scale, 1.12))) !important;
+}
+
+.text-\[10px\], .text-\[10\.5px\] {
+  font-size: max(13px, calc(0.8rem * var(--font-scale, 1.12))) !important;
+}
+
+.text-\[11px\], .text-\[11\.5px\] {
+  font-size: max(13.5px, calc(0.86rem * var(--font-scale, 1.12))) !important;
+}
+
+.text-\[12px\], .text-xs {
+  font-size: max(14px, calc(0.92rem * var(--font-scale, 1.12))) !important;
+}
+
+.text-\[13px\], .text-sm {
+  font-size: max(15px, calc(0.98rem * var(--font-scale, 1.12))) !important;
+}
+
+/* Ensure headings have clear spacing and do not blur or overlap */
+h1, h2, h3, h4, h5, h6,
+.card-title, .title, .heading {
+  letter-spacing: 0.04em !important;
+  line-height: 1.35 !important;
+  font-weight: 800;
+}
+
+/* Global Tab & Navigation Sizing, Padding & Letter Spacing Upgrades */
+button, 
+[role="tab"], 
+.tab-button, 
+.tab-item, 
+nav button {
+  letter-spacing: 0.04em !important;
+  line-height: 1.4 !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+/* Ensure tab containers allow sufficient padding and room for buttons */
+nav, [role="tablist"], .tab-container {
+  gap: 0.5rem;
+}
+
+/* Enhance all tab buttons with comfortable vertical & horizontal breathing space */
+nav button,
+[role="tab"] {
+  min-height: 42px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+@layer components {
+  /* Global scrollbars for the entire app to be easier to grab and transitate */
+  ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c6a34f;
+    border: 3px solid #050505;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e2be64;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: #ffd673;
+  }
+
+  /* Custom scrollbar buttons (arrows) */
+  ::-webkit-scrollbar-button {
+    display: block;
+    background-color: #111111;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-button:hover {
+    background-color: #222222;
+    border-color: #c6a34f;
+  }
+  ::-webkit-scrollbar-button:active {
+    background-color: #c6a34f;
+  }
+
+  /* Vertical Up Arrow */
+  ::-webkit-scrollbar-button:single-button:vertical:decrement {
+    height: 16px;
+    width: 16px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23c6a34f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='18 15 12 9 6 15'></polyline></svg>");
+  }
+
+  /* Vertical Down Arrow */
+  ::-webkit-scrollbar-button:single-button:vertical:increment {
+    height: 16px;
+    width: 16px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23c6a34f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+  }
+
+  /* Horizontal Left Arrow */
+  ::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    height: 16px;
+    width: 16px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23c6a34f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='15 18 9 12 15 6'></polyline></svg>");
+  }
+
+  /* Horizontal Right Arrow */
+  ::-webkit-scrollbar-button:single-button:horizontal:increment {
+    height: 16px;
+    width: 16px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23c6a34f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'></polyline></svg>");
+  }
+
+  /* Specific custom-scrollbar class override for precision panels */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #c6a34f;
+    border: 3px solid #050505;
+    border-radius: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #e2be64;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:active {
+    background: #ffd673;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-button {
+    display: block;
+    background-color: #111111;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-button:hover {
+    background-color: #222222;
+    border-color: #c6a34f;
+  }
+  .custom-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement {
+    height: 16px;
+    width: 16px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23c6a34f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='18 15 12 9 6 15'></polyline></svg>");
+  }
+  .custom-scrollbar::-webkit-scrollbar-button:single-button:vertical:increment {
+    height: 16px;
+    width: 16px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23c6a34f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+  }
+  .custom-scrollbar::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    height: 16px;
+    width: 16px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23c6a34f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='15 18 9 12 15 6'></polyline></svg>");
+  }
+  .custom-scrollbar::-webkit-scrollbar-button:single-button:horizontal:increment {
+    height: 16px;
+    width: 16px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23c6a34f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'></polyline></svg>");
+  }
+}
+
+/* Custom animations for glass cards */
+.glass-glow {
+  box-shadow: 0 0 30px rgba(198, 163, 79, 0.1);
+}
+
+@keyframes heatmap-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(198, 163, 79, 0.3) inset, 0 0 4px rgba(198, 163, 79, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(198, 163, 79, 0.8) inset, 0 0 12px rgba(198, 163, 79, 0.5);
+    transform: scale(1.02);
+  }
+}
+
+.heatmap-grid-cell.is-hot {
+  animation: heatmap-pulse 2s infinite ease-in-out;
+  border-color: rgba(198, 163, 79, 0.8) !important;
+  z-index: 5;
+}
+
+@keyframes board-fade-in {
+  from {
+    opacity: 0.3;
+    transform: scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-board-fade {
+  animation: board-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 
+  ==========================================================================
+  EXTREME NIGHT MODE & OLED BATTERY SAVER (ANIMATION AND TRANSITION KILLER)
+  ==========================================================================
+*/
+.extreme-night-mode,
+.extreme-night-mode body {
+  background-color: #000000 !important;
+  background-image: none !important;
+}
+
+.extreme-night-mode .bg-[#111111],
+.extreme-night-mode .bg-zinc-900,
+.extreme-night-mode .bg-neutral-900,
+.extreme-night-mode .bg-stone-900,
+.extreme-night-mode .bg-[#161616],
+.extreme-night-mode .bg-[#1a1a1a],
+.extreme-night-mode .bg-[#1a1813],
+.extreme-night-mode .bg-[#1c1a14],
+.extreme-night-mode .bg-[#12110e],
+.extreme-night-mode .bg-black\/40,
+.extreme-night-mode .bg-white\/5,
+.extreme-night-mode .bg-white\/10 {
+  background-color: #000000 !important;
+  background-image: none !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+.extreme-night-mode,
+.extreme-night-mode * {
+  transition: none !important;
+  animation: none !important;
+  transition-duration: 0s !important;
+  animation-duration: 0s !important;
+  scroll-behavior: auto !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* 
+  ==========================================================================
+  STOP WIN & STOP LOSS FRONT-VIEW COLORATION & PULSE OVERLAYS
+  ==========================================================================
+*/
+@keyframes pulse-stop-win-glow {
+  0%, 100% {
+    box-shadow: inset 0 0 70px rgba(34, 197, 94, 0.28), 0 0 35px rgba(34, 197, 94, 0.22);
+    border-color: rgba(34, 197, 94, 0.65);
+  }
+  50% {
+    box-shadow: inset 0 0 120px rgba(34, 197, 94, 0.42), 0 0 60px rgba(34, 197, 94, 0.35);
+    border-color: rgba(74, 222, 128, 0.95);
+  }
+}
+
+@keyframes pulse-stop-loss-glow {
+  0%, 100% {
+    box-shadow: inset 0 0 70px rgba(239, 68, 68, 0.28), 0 0 35px rgba(239, 68, 68, 0.22);
+    border-color: rgba(239, 68, 68, 0.65);
+  }
+  50% {
+    box-shadow: inset 0 0 120px rgba(239, 68, 68, 0.42), 0 0 60px rgba(239, 68, 68, 0.35);
+    border-color: rgba(248, 113, 113, 0.95);
+  }
+}
+
+.stop-win-active-screen {
+  animation: pulse-stop-win-glow 3s infinite ease-in-out;
+}
+
+.stop-loss-active-screen {
+  animation: pulse-stop-loss-glow 2.5s infinite ease-in-out;
+}
+
+

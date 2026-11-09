@@ -1,0 +1,24 @@
+{
+  "name": "Casino Pattern AI",
+  "short_name": "CasinoPattern",
+  "description": "Professional casino pattern analysis and risk management system with real-time statistics for Roulette, Baccarat, and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#c6a34f",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "Pattern": {
+      "title": "Pattern",
+      "description": "Represents a sequence of results and the next outcome tracked over time.",
+      "type": "object",
+      "properties": {
+        "gameType": { "type": "string" },
+        "sequence": { "type": "string", "description": "Comma separated string of results" },
+        "nextOutcome": { "type": "string", "description": "The result that followed this sequence" },
+        "wins": { "type": "number", "description": "Total times this outcome led to a win" },
+        "count": { "type": "number", "description": "Total times this sequence was encountered" },
+        "winRate": { "type": "number" },
+        "lastUpdated": { "type": "string", "format": "date-time" }
+      },
+      "required": ["gameType", "sequence", "nextOutcome", "wins", "count"]
+    },
+    "DailyStats": {
+      "title": "DailyStats",
+      "description": "Represents the daily summary of roulette/baccarat operations.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string", "description": "Local date in YYYY-MM-DD format" },
+        "gameType": { "type": "string", "description": "roulette or baccarat" },
+        "initialBalance": { "type": "number" },
+        "finalBalance": { "type": "number" },
+        "netProfit": { "type": "number" },
+        "netLoss": { "type": "number" },
+        "totalOperations": { "type": "number" },
+        "winsCount": { "type": "number" },
+        "lossesCount": { "type": "number" },
+        "winPercentage": { "type": "number" },
+        "lossPercentage": { "type": "number" },
+        "totalRecoveries": { "type": "number" },
+        "recoveriesGale1": { "type": "number" },
+        "recoveriesGale2": { "type": "number" },
+        "recoveriesGale3": { "type": "number" },
+        "recoveriesGale4": { "type": "number" },
+        "recoveriesGale5": { "type": "number" },
+        "recoveriesUpperLevels": { "type": "number" },
+        "maxGaleUsed": { "type": "number" },
+        "avgGalePerOperation": { "type": "number" },
+        "winsNoGale": { "type": "number" },
+        "redsCount": { "type": "number" },
+        "maxWinStreak": { "type": "number" },
+        "maxLossStreak": { "type": "number" },
+        "totalDurationMs": { "type": "number" },
+        "formattedDuration": { "type": "string" },
+        "notes": { "type": "string" },
+        "lastUpdated": { "type": "string", "format": "date-time" }
+      },
+      "required": ["date", "gameType", "initialBalance", "finalBalance"]
+    }
+  },
+  "firestore": {
+    "patterns": {
+      "schema": "Pattern",
+      "description": "Global collection of historical patterns learned from all sessions."
+    },
+    "dailyStats": {
+      "schema": "DailyStats",
+      "description": "Collection of daily statistical summaries for each game type."
+    }
+  }
+}
